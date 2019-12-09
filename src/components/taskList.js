@@ -17,6 +17,13 @@ export default class TaskList extends Component {
             cards: sampleBoard.taskLists[0].cards
         });
     }
+    addCard = e => {
+        e.preventDefault();
+        let updatedCards = this.state.cards.concat([{cardTitle: 'New Card!'}]);
+        this.setState({
+          cards: updatedCards
+        })
+    }
     renderCards(key) {
         return (
             <Card cardTitle={key.cardTitle}/>
@@ -29,7 +36,7 @@ export default class TaskList extends Component {
                 <ul>
                     {this.state.cards.map(cardObj => this.renderCards(cardObj))}
                 </ul>
-                + Add a card
+                <button className="btn btn-add-card" onClick={this.addCard}>+ Add a card</button>
             </div>
         );
     }

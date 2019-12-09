@@ -5,6 +5,11 @@
     padding: 10px 10px;
 }
 
+.btn-add-card {
+    text-align: left;
+    width: 100%;
+}
+
 .list-title {
     color: #272727;
     font-weight: bold;
