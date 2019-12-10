@@ -8,7 +8,8 @@ export default class TaskList extends Component {
         super(props);
         this.state = {
             title: '',
-            cards: []
+            cards: [],
+            addCard: false
         }
     }
     componentWillMount() {
@@ -19,10 +20,22 @@ export default class TaskList extends Component {
     }
     addCard = e => {
         e.preventDefault();
-        let updatedCards = this.state.cards.concat([{cardTitle: 'New Card!'}]);
         this.setState({
-          cards: updatedCards
-        })
+            addCard: true
+        });    
+    }
+    onEnter = e => {
+        if(e.keyCode === 13 && e.shiftKey === false) {
+            e.preventDefault();
+            var title = e.target.value;
+            let updatedCards = this.state.cards.concat([{cardTitle: title}]);
+            this.setState({
+                cards: updatedCards
+            });
+            this.setState({
+                addCard: false
+            });
+        }
     }
     renderCards(key) {
         return (
@@ -36,6 +49,7 @@ export default class TaskList extends Component {
                 <ul>
                     {this.state.cards.map(cardObj => this.renderCards(cardObj))}
                 </ul>
+                {(this.state.addCard === true) && <input type="text" name="newCardTitle" onKeyDown={this.onEnter}></input>}
                 <button className="btn btn-add-card" onClick={this.addCard}>+ Add a card</button>
             </div>
         );
