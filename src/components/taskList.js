@@ -37,12 +37,19 @@ export default class TaskList extends Component {
             });
         }
     }
+    deleteCard = cardDeleting => {
+        const updatedCards = this.state.cards.filter(card => card.cardTitle !== cardDeleting);
+        this.setState({
+            cards: updatedCards
+        });
+    }
     render() {
         return (
             <div className="board">
                 <div className="list-title">{this.state.title}</div>
                 <ul>
-                    {this.state.cards.map(cardObj => <Card key={cardObj.cardTitle} cardTitle={cardObj.cardTitle}/>)}
+                    {this.state.cards.map(cardObj => 
+                        <Card key={cardObj.cardTitle} cardTitle={cardObj.cardTitle} onDelete={this.deleteCard}/>)}
                 </ul>
                 {(this.state.addCard === true) && <input type="text" name="newCardTitle" onKeyDown={this.onEnter}></input>}
                 <button className="btn btn-add-card" onClick={this.addCard}>+ Add a card</button>
