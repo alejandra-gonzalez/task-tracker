@@ -13,6 +13,7 @@ class App extends Component {
         <div className="container">
           <h1>Trello Clone (Single Board)</h1>
           <Route path='/' exact component={TaskList}/>
+          <a href="https://icons8.com/icon/89821/pencil">Pencil icon by Icons8</a>
         </div>
       </Router>
     );

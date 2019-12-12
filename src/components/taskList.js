@@ -37,17 +37,12 @@ export default class TaskList extends Component {
             });
         }
     }
-    renderCards(key) {
-        return (
-            <Card cardTitle={key.cardTitle}/>
-        )
-    }
     render() {
         return (
             <div className="board">
                 <div className="list-title">{this.state.title}</div>
                 <ul>
-                    {this.state.cards.map(cardObj => this.renderCards(cardObj))}
+                    {this.state.cards.map(cardObj => <Card key={cardObj.cardTitle} cardTitle={cardObj.cardTitle}/>)}
                 </ul>
                 {(this.state.addCard === true) && <input type="text" name="newCardTitle" onKeyDown={this.onEnter}></input>}
                 <button className="btn btn-add-card" onClick={this.addCard}>+ Add a card</button>
